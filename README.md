@@ -1,6 +1,6 @@
 # A Password Generator
 
-<iframe src="http://haocaihao.fun" width="800px" height="500px" frameborder="0" scrolling="no"> </iframe>
+## http://haocaihao.fun
 
 ## Support Chinese and English
 ## Using SHA256 to generate password.
