@@ -5,6 +5,6 @@ Support Chinese and English
 # https://github.com/cryptocoinjs/sha256
 
 # License
-(GNUv2  License)
+(GNU General Public License v2.0 License)
 
 Copyright 2021, Vida Wang  <github@vida.wang>
