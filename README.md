@@ -1,5 +1,7 @@
 # A Password Generator
-## http://haocaihao.fun
+
+<iframe src="http://haocaihao.fun" width="800px" height="500px" frameborder="0" scrolling="no"> </iframe>
+
 ## Support Chinese and English
 ## Using SHA256 to generate password.
 ## https://github.com/cryptocoinjs/sha256
