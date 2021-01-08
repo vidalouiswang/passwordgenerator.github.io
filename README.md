@@ -1,6 +1,6 @@
-# A Password Generator
+# Password Generator
 
-## http://haocaihao.fun
+## https://haocaihao.fun
 
 ## Support Chinese and English
 ## Using SHA256 to generate password.
