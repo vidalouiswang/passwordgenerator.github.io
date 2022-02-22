@@ -23,7 +23,8 @@
     let strMainPass = { en: "MAIN PASSWORD", zh: "主密码" };
     let strPassword = { en: "Click to copy", zh: "点击复制" };
     let strCustomBit = { en: "Length", zh: "位数" };
-    let strHeading = { en: "This website is open source on <a href='https://github.com'>GitHub</a>", zh: "这个网站开源在<a href='https://github.com'>GitHub</a>" }
+    let url = "https://github.com/vidalouiswang/passwordgenerator.github.io";
+    let strHeading = { en: "This website is open source on <a href='" + url + "'>GitHub</a>", zh: "这个网站开源在<a href='" + url + "'>GitHub</a>" }
     let isLanguageChinese = navigator.language;
     isLanguageChinese = /zh/i.test(isLanguageChinese);
 
@@ -285,7 +286,6 @@
         if (!bit) {
             return;
         }
-        let ls = localStorage;
         if (!ls.custom) {
             ls.custom = "[]";
         }
@@ -307,7 +307,7 @@
             ls.custom = JSON.stringify(arr);
         }
     };
-    
+
 
     class Config {
         constructor(config) {
@@ -322,7 +322,7 @@
             let outerDiv = create();
             outerDiv.className = "config";
             let span = create("span");
-            span.innerText = config.text;
+            span.innerText = config.value.toString();
 
             let dot = create();
             b.dot = dot;
@@ -409,9 +409,11 @@
     objPassword.placeholder = isLanguageChinese ? strPassword.zh : strPassword.en;
 
     objPassword.onclick = function (e) {
-        navigator.clipboard.writeText(this.value).then(e => {
-            showMsg(isLanguageChinese ? strCopySuccessfully.zh : strCopySuccessfully.en, 1000);
-        });
+        if (this.value && this.value.length) {
+            navigator.clipboard.writeText(this.value).then(e => {
+                showMsg(isLanguageChinese ? strCopySuccessfully.zh : strCopySuccessfully.en, 1000);
+            });
+        }
     };
 
     get("btnShowCustom").innerText = isLanguageChinese ? strBtnShowCustom.zh : strBtnShowCustom.en;
@@ -463,34 +465,30 @@
     new Config({
         type: "bit",
         value: 256,
-        text: "256",
         container: containerBits
     });
 
     new Config({
         type: "bit",
         value: 16,
-        text: "16",
         selected: 1,
         container: containerBits
     });
     new Config({
         type: "bit",
         value: 8,
-        text: "8",
         container: containerBits
     });
     new Config({
         type: "bit",
         value: 6,
-        text: "6",
         container: containerBits
     });
 
-    if (localStorage.custom) {
+    if (ls.custom) {
         let arr = 0;
         try {
-            arr = JSON.parse(localStorage.custom);
+            arr = JSON.parse(ls.custom);
         } catch (e) {
 
         }
