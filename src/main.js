@@ -17,8 +17,8 @@
     let strBtnStore = { en: ["Store", "Delete"], zh: ["存储", "删除"] };
     let ls = localStorage;
     let strStoreInfo = {
-        en: "This action will store your password in \"localStorage\" in your browser, DO NOT store password in public device. This action is NOT recommended.",
-        zh: "密码会保存在你浏览器的\"LocalStorage\"中, 不要在公共设备上存储密码。不建议使用这个操作。"
+        en: "This action will store your password in \"localStorage\" in your browser. This action is NOT recommended.",
+        zh: "密码会保存在你浏览器的\"LocalStorage\"中。不建议使用这个操作。"
     };
     let strMainPass = { en: "MAIN PASSWORD", zh: "主密码" };
     let strPassword = { en: "Click to copy", zh: "点击复制" };
@@ -322,7 +322,7 @@
             let outerDiv = create();
             outerDiv.className = "config";
             let span = create("span");
-            span.innerText = config.value.toString();
+            span.innerText = config.text || config.value.toString();
 
             let dot = create();
             b.dot = dot;
