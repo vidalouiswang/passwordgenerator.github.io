@@ -17,12 +17,13 @@
     let strBtnStore = { en: ["Store", "Delete"], zh: ["存储", "删除"] };
     let ls = localStorage;
     let strStoreInfo = {
-        en: "This action will store your password in \"localStorage\" in your browser. This action is NOT recommended.",
-        zh: "密码会保存在你浏览器的\"LocalStorage\"中。不建议使用这个操作。"
+        en: "This action will store your password in \"localStorage\" in your browser, DO NOT store password in public device. This action is NOT recommended.",
+        zh: "密码会保存在你浏览器的\"LocalStorage\"中, 不要在公共设备上存储密码。不建议使用这个操作。"
     };
     let strMainPass = { en: "MAIN PASSWORD", zh: "主密码" };
     let strPassword = { en: "Click to copy", zh: "点击复制" };
     let strCustomBit = { en: "Length", zh: "位数" };
+
     let url = "https://github.com/vidalouiswang/passwordgenerator.github.io";
     let strHeading = { en: "This website is open source on <a href='" + url + "'>GitHub</a>", zh: "这个网站开源在<a href='" + url + "'>GitHub</a>" }
     let isLanguageChinese = navigator.language;
@@ -247,7 +248,7 @@
         for (let i of w.app) {
             value += i.value;
         }
-        if (mainPass.value && value) {
+        if (mainPass.value.length && value.length) {
             let pass = getPassword(mainPass.value + value, w.config.level, w.config.bit);
             get("password").value = pass;
         }
@@ -379,15 +380,18 @@
         }
         keyup(e) {
             //this == app
+            if (e.keyCode == 9 || e.keyCode == 13) {
+                return;
+            }
             this.value = this.input.value;
             generatePassword();
-            if (!this.value) {
+            if (!this.value.length) {
                 if (w.app.length > 1) {
                     w.app.splice(w.app.findIndex(e => { return e == this; }), 1);
                     this.value = "";
                     this.container.removeChild(this.input);
+                    w.app[w.app.length - 1].input.focus();
                 }
-
             } else {
                 if (w.app[w.app.length - 1].value != "") {
                     new App(get("app"));
